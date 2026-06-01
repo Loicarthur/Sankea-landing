@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Search, CalendarCheck, CreditCard, Sparkles, Store, Wallet, TrendingUp, Images, Instagram, Linkedin, Mail, ShieldCheck, MapPin } from 'lucide-react'
+import { Search, CalendarCheck, CreditCard, Sparkles, Store, Wallet, TrendingUp, Images, Instagram, Linkedin, Mail, ShieldCheck, MapPin, Star, Quote } from 'lucide-react'
 
 const PRIVACY_URL = 'https://admin.san-kea.com/privacy'
 const TERMS_URL = 'https://admin.san-kea.com/terms'
@@ -41,6 +41,13 @@ const STYLES = [
   { src: '/styles/vanilles.jpg', label: 'Vanilles' },
 ]
 
+const SCREENS = [
+  { src: '/screens/salon.png', alt: 'Fiche salon dans l’app Sankéa' },
+  { src: '/screens/services.png', alt: 'Liste des prestations avec tarifs et durées' },
+  { src: '/screens/creneaux.png', alt: 'Choix du créneau de rendez-vous' },
+  { src: '/screens/paiement.png', alt: 'Paiement sécurisé via Stripe' },
+]
+
 const STEPS = [
   { icon: Search, title: 'Trouve ta coiffeuse', text: 'Explore les salons et coiffeuses afro près de chez toi, avis et portfolios à l’appui.' },
   { icon: CalendarCheck, title: 'Choisis ta prestation', text: 'Box braids, twists, locks, vanilles… sélectionne ton style, ta date et ton créneau.' },
@@ -53,6 +60,13 @@ const PRO_FEATURES = [
   { icon: Wallet, title: 'Reçois tes paiements', text: 'Versements bancaires sécurisés via Stripe, directement sur ton compte.' },
   { icon: TrendingUp, title: 'Remplis ton agenda', text: 'Gagne en visibilité auprès de nouvelles clientes, réduis les créneaux vides.' },
   { icon: Images, title: 'Mets en avant ton talent', text: 'Publie ton portfolio avant/après et démarque-toi auprès des clientes.' },
+]
+
+// ⚠️ Témoignages D'EXEMPLE — à remplacer par de vrais avis avant un usage public durable.
+const TESTIMONIALS = [
+  { quote: 'J’ai trouvé une super coiffeuse à 10 minutes de chez moi et réservé en deux minutes. Fini les appels dans tous les sens !', name: 'Aïcha M.', role: 'Cliente · Paris' },
+  { quote: 'Le paiement en ligne me rassure, et les rappels m’évitent d’oublier mes rendez-vous. Exactement ce qu’il me fallait.', name: 'Fatou D.', role: 'Cliente · Lyon' },
+  { quote: 'Côté salon, je gère mon agenda et mes paiements super facilement. Mes créneaux se remplissent tout seuls.', name: 'Genesis', role: 'Coiffeuse · Champigny-sur-Marne' },
 ]
 
 const FAQ = [
@@ -76,6 +90,7 @@ export default function Home() {
           <nav className="hidden items-center gap-8 text-sm font-medium text-gray-600 md:flex">
             <a href="#styles" className="transition hover:text-ink">Coiffures</a>
             <a href="#comment" className="transition hover:text-ink">Comment ça marche</a>
+            <a href="#apercu" className="transition hover:text-ink">L’app</a>
             <a href="#coiffeuses" className="transition hover:text-ink">Coiffeuses</a>
             <a href="#telecharger" className="rounded-full bg-ink px-4 py-2 text-white transition hover:opacity-90">Télécharger</a>
           </nav>
@@ -103,19 +118,18 @@ export default function Home() {
             <p className="mt-3 text-sm text-gray-500">Disponible très bientôt sur iOS et Android.</p>
           </div>
 
-          {/* Hero image */}
-          <div className="relative mx-auto w-full max-w-sm">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] shadow-2xl ring-1 ring-black/5">
+          {/* Hero app screenshot */}
+          <div className="relative mx-auto w-full max-w-[300px]">
+            <div className="relative aspect-[1290/2400] overflow-hidden rounded-[2.2rem] shadow-2xl ring-1 ring-black/10">
               <Image
-                src="/photos/hero.jpg"
-                alt="Femme arborant une coiffure afro"
+                src="/screens/accueil.png"
+                alt="Écran d’accueil de l’application Sankéa"
                 fill
                 priority
-                sizes="(max-width: 768px) 90vw, 384px"
-                className="object-cover"
+                sizes="(max-width: 768px) 80vw, 300px"
+                className="object-cover object-bottom"
               />
             </div>
-            {/* Floating booking chip */}
             <div className="absolute -bottom-5 -left-5 hidden rounded-2xl bg-white p-4 shadow-xl ring-1 ring-black/5 sm:block">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-ink text-white">
@@ -182,6 +196,31 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Aperçu de l'app */}
+      <section id="apercu" className="bg-ink text-white">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold tracking-tight md:text-4xl">Un aperçu de l’app</h2>
+            <p className="mx-auto mt-4 max-w-xl text-white/70">
+              De la recherche du salon au paiement sécurisé : tout se passe au même endroit.
+            </p>
+          </div>
+          <div className="mt-12 flex snap-x gap-5 overflow-x-auto pb-4 md:grid md:grid-cols-4 md:overflow-visible">
+            {SCREENS.map((s) => (
+              <div key={s.src} className="relative aspect-[1290/2796] w-[230px] shrink-0 snap-center overflow-hidden rounded-[1.8rem] ring-1 ring-white/10 md:w-auto">
+                <Image
+                  src={s.src}
+                  alt={s.alt}
+                  fill
+                  sizes="(max-width: 768px) 230px, 280px"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Bande éditoriale */}
       <section className="relative isolate overflow-hidden bg-ink">
         <Image
@@ -223,6 +262,35 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Témoignages */}
+      <section className="border-t border-gray-200 bg-surface">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold tracking-tight md:text-4xl">Elles parlent de Sankéa</h2>
+            <p className="mx-auto mt-4 max-w-xl text-gray-600">
+              Clientes et coiffeuses, découvrez pourquoi elles ont adopté l’application.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {TESTIMONIALS.map((t) => (
+              <figure key={t.name} className="flex flex-col rounded-2xl border border-gray-200 bg-white p-6">
+                <Quote size={28} className="text-gray-300" />
+                <div className="mt-3 flex gap-1">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} size={16} className="fill-ink text-ink" />
+                  ))}
+                </div>
+                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-gray-700">“{t.quote}”</blockquote>
+                <figcaption className="mt-5 border-t border-gray-100 pt-4">
+                  <p className="font-bold">{t.name}</p>
+                  <p className="text-sm text-gray-500">{t.role}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Espace coiffeuses */}
       <section id="coiffeuses" className="bg-ink text-white">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 md:grid-cols-2">
@@ -252,12 +320,12 @@ export default function Home() {
               Rejoindre Sankéa — bientôt disponible
             </div>
           </div>
-          <div className="relative mx-auto hidden aspect-[3/4] w-full max-w-sm overflow-hidden rounded-[2rem] ring-1 ring-white/10 md:block">
+          <div className="relative mx-auto hidden aspect-[1290/2796] w-full max-w-[280px] overflow-hidden rounded-[2rem] ring-1 ring-white/10 md:block">
             <Image
-              src="/photos/pro.jpg"
-              alt="Coiffeur professionnel souriant"
+              src="/screens/coiffeur-dashboard.png"
+              alt="Tableau de bord coiffeuse dans l’app Sankéa"
               fill
-              sizes="384px"
+              sizes="280px"
               className="object-cover"
             />
           </div>
