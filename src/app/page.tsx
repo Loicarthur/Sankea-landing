@@ -116,14 +116,14 @@ export default function Home() {
 
           {/* Hero app screenshot */}
           <div className="relative mx-auto w-full max-w-[300px]">
-            <div className="relative aspect-[1290/2400] overflow-hidden rounded-[2.2rem] shadow-2xl ring-1 ring-black/10">
+            <div className="relative aspect-[1290/2796] overflow-hidden rounded-[2.2rem] shadow-2xl ring-1 ring-black/10">
               <Image
                 src="/screens/accueil.png"
                 alt="Écran d’accueil de l’application Sankéa"
                 fill
                 priority
                 sizes="(max-width: 768px) 80vw, 300px"
-                className="object-cover object-bottom"
+                className="object-contain"
               />
             </div>
             <div className="absolute -bottom-5 -left-5 hidden rounded-2xl bg-white p-4 shadow-xl ring-1 ring-black/5 sm:block">
