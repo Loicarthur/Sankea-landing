@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Search, CalendarCheck, CreditCard, Sparkles, Store, Wallet, TrendingUp, Images, Instagram, Linkedin, Mail, ShieldCheck, MapPin, Star, Quote } from 'lucide-react'
+import { Search, CalendarCheck, CreditCard, Sparkles, Store, Wallet, TrendingUp, Images, Instagram, Linkedin, Mail, ShieldCheck, MapPin } from 'lucide-react'
 
 const PRIVACY_URL = 'https://admin.san-kea.com/privacy'
 const TERMS_URL = 'https://admin.san-kea.com/terms'
@@ -60,13 +60,6 @@ const PRO_FEATURES = [
   { icon: Wallet, title: 'Reçois tes paiements', text: 'Versements bancaires sécurisés via Stripe, directement sur ton compte.' },
   { icon: TrendingUp, title: 'Remplis ton agenda', text: 'Gagne en visibilité auprès de nouvelles clientes, réduis les créneaux vides.' },
   { icon: Images, title: 'Mets en avant ton talent', text: 'Publie ton portfolio avant/après et démarque-toi auprès des clientes.' },
-]
-
-// ⚠️ Témoignages D'EXEMPLE — à remplacer par de vrais avis avant un usage public durable.
-const TESTIMONIALS = [
-  { quote: 'J’ai trouvé une super coiffeuse à 10 minutes de chez moi et réservé en deux minutes. Fini les appels dans tous les sens !', name: 'Aïcha M.', role: 'Cliente · Paris' },
-  { quote: 'Le paiement en ligne me rassure, et les rappels m’évitent d’oublier mes rendez-vous. Exactement ce qu’il me fallait.', name: 'Fatou D.', role: 'Cliente · Lyon' },
-  { quote: 'Côté salon, je gère mon agenda et mes paiements super facilement. Mes créneaux se remplissent tout seuls.', name: 'Genesis', role: 'Coiffeuse · Champigny-sur-Marne' },
 ]
 
 const FAQ = [
@@ -259,35 +252,6 @@ export default function Home() {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Témoignages */}
-      <section className="border-t border-gray-200 bg-surface">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <div className="text-center">
-            <h2 className="text-3xl font-extrabold tracking-tight md:text-4xl">Elles parlent de Sankéa</h2>
-            <p className="mx-auto mt-4 max-w-xl text-gray-600">
-              Clientes et coiffeuses, découvrez pourquoi elles ont adopté l’application.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {TESTIMONIALS.map((t) => (
-              <figure key={t.name} className="flex flex-col rounded-2xl border border-gray-200 bg-white p-6">
-                <Quote size={28} className="text-gray-300" />
-                <div className="mt-3 flex gap-1">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} size={16} className="fill-ink text-ink" />
-                  ))}
-                </div>
-                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-gray-700">“{t.quote}”</blockquote>
-                <figcaption className="mt-5 border-t border-gray-100 pt-4">
-                  <p className="font-bold">{t.name}</p>
-                  <p className="text-sm text-gray-500">{t.role}</p>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
         </div>
       </section>
 
