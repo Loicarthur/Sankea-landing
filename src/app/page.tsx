@@ -33,14 +33,15 @@ function StoreBadge({ store }: { store: 'apple' | 'google' }) {
 }
 
 const CATEGORIES = [
-  { src: '/styles/box-braids.jpg', label: 'Tresses & Nattes' },
-  { src: '/styles/twists.jpg', label: 'Vanilles & Twists' },
+  { src: '/styles/tresses.jpg', label: 'Tresses & Nattes' },
+  { src: '/styles/twists.jpg', label: 'Twists' },
   { src: '/styles/locks.jpg', label: 'Locks' },
-  { src: '/styles/boucles.jpg', label: 'Boucles & Ondulations' },
-  { src: '/styles/tissages.jpg', label: 'Tissages & Perruques' },
-  { src: '/styles/ponytail.jpg', label: 'Ponytail' },
-  { src: '/styles/coupe.jpg', label: 'Coupe & Restructuration' },
-  { src: '/styles/soins.jpg', label: 'Soins & Coloration' },
+  { src: '/styles/tissages.jpg', label: 'Tissages & Extensions' },
+  { src: '/styles/perruques.jpg', label: 'Perruques' },
+  { src: '/styles/crochet.jpg', label: 'Crochet & Demi-permanents' },
+  { src: '/styles/naturels.jpg', label: 'Cheveux Naturels & Protectrices' },
+  { src: '/styles/soins.jpg', label: 'Soins & Traitements' },
+  { src: '/styles/coloration.jpg', label: 'Coloration' },
 ]
 
 const SCREENS = [
@@ -150,7 +151,7 @@ export default function Home() {
               professionnelle qui vous correspondent.
             </p>
           </div>
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5">
+          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:gap-5">
             {CATEGORIES.map((c) => (
               <div key={c.label} className="group relative aspect-[3/4] overflow-hidden rounded-2xl">
                 <Image
