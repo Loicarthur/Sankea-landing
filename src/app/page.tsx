@@ -32,13 +32,15 @@ function StoreBadge({ store }: { store: 'apple' | 'google' }) {
   )
 }
 
-const STYLES = [
-  { src: '/styles/box-braids.jpg', label: 'Box Braids' },
-  { src: '/styles/knotless.jpg', label: 'Knotless Braids' },
-  { src: '/styles/fulani.jpg', label: 'Fulani Braids' },
-  { src: '/styles/twists.jpg', label: 'Twists' },
+const CATEGORIES = [
+  { src: '/styles/box-braids.jpg', label: 'Tresses & Nattes' },
+  { src: '/styles/twists.jpg', label: 'Vanilles & Twists' },
   { src: '/styles/locks.jpg', label: 'Locks' },
-  { src: '/styles/vanilles.jpg', label: 'Vanilles' },
+  { src: '/styles/boucles.jpg', label: 'Boucles & Ondulations' },
+  { src: '/styles/tissages.jpg', label: 'Tissages & Perruques' },
+  { src: '/styles/ponytail.jpg', label: 'Ponytail' },
+  { src: '/styles/coupe.jpg', label: 'Coupe & Restructuration' },
+  { src: '/styles/soins.jpg', label: 'Soins & Coloration' },
 ]
 
 const SCREENS = [
@@ -144,21 +146,22 @@ export default function Home() {
           <div className="text-center">
             <h2 className="text-3xl font-extrabold tracking-tight md:text-4xl">Toutes vos coiffures, une seule app</h2>
             <p className="mx-auto mt-4 max-w-xl text-gray-600">
-              Des tresses aux locks, trouvez la prestation et la professionnelle qui vous correspondent.
+              Des tresses aux soins, en passant par les locks et les tissages — trouvez la prestation et la
+              professionnelle qui vous correspondent.
             </p>
           </div>
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:gap-5">
-            {STYLES.map((s) => (
-              <div key={s.label} className="group relative aspect-[3/4] overflow-hidden rounded-2xl">
+          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5">
+            {CATEGORIES.map((c) => (
+              <div key={c.label} className="group relative aspect-[3/4] overflow-hidden rounded-2xl">
                 <Image
-                  src={s.src}
-                  alt={s.label}
+                  src={c.src}
+                  alt={c.label}
                   fill
-                  sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 360px"
+                  sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 280px"
                   className="object-cover transition duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent" />
-                <span className="absolute bottom-4 left-4 text-lg font-bold text-white drop-shadow">{s.label}</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/0 to-transparent" />
+                <span className="absolute bottom-4 left-4 right-4 text-base font-bold leading-tight text-white drop-shadow">{c.label}</span>
               </div>
             ))}
           </div>
