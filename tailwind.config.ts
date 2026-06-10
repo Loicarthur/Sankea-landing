@@ -9,7 +9,11 @@ const config: Config = {
         surface: '#f9f8f8',
       },
       fontFamily: {
-        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+        sans: ['var(--font-sans)', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+        display: ['var(--font-display)', 'Georgia', 'serif'],
+      },
+      letterSpacing: {
+        tightest: '-0.04em',
       },
     },
   },
