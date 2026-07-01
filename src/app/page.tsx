@@ -405,8 +405,8 @@ export default function Home() {
       <section id="coiffeuses" className="bg-ink text-white">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-24 md:grid-cols-2">
           <Reveal>
-            <span className="inline-block rounded-full border border-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white/70">
-              Pour les professionnelles
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white/70">
+              <span className="h-1.5 w-1.5 rounded-full bg-white" /> Offre de lancement · pour les professionnelles
             </span>
             <h2 className="mt-5 font-display text-4xl font-semibold tracking-tight md:text-5xl">
               Tu es coiffeuse ? <span className="italic font-light">Développe ton activité</span> avec Sankéa.
@@ -426,9 +426,47 @@ export default function Home() {
                 </Reveal>
               ))}
             </div>
-            <div className="mt-8">
-              <InstagramCTA light />
+
+            {/* Offre de lancement 0 % */}
+            <div className="mt-8 rounded-2xl border border-white/15 bg-white/[0.07] p-6">
+              <div className="flex items-center gap-3">
+                <span className="rounded-full bg-white px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink">
+                  Coiffeuses fondatrices
+                </span>
+              </div>
+              <p className="mt-4 font-display text-3xl font-semibold leading-tight">
+                <span className="italic font-light">0 %</span> de commission le premier mois.
+              </p>
+              <p className="mt-2 max-w-md text-sm text-white/65">
+                Tu encaisses <strong className="font-semibold text-white">100 % de tes prestations</strong> pendant 30 jours.
+                Sans frais d’inscription, sans engagement — tu annules quand tu veux.
+              </p>
             </div>
+
+            {/* CTA inscription coiffeuse */}
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <a
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-ink transition hover:bg-white/90"
+              >
+                Créer mon salon gratuitement
+                <ArrowUpRight size={16} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-medium text-white/70 underline-offset-4 transition hover:text-white hover:underline"
+              >
+                <Instagram size={16} />
+                Nous suivre sur Instagram
+              </a>
+            </div>
+            <p className="mt-4 text-sm text-white/45">
+              Disponible sur iOS — Android très bientôt. Sur Android ? Écris-nous, on te réserve ta place fondatrice.
+            </p>
           </Reveal>
           <Reveal delay={120} className="relative mx-auto hidden aspect-[1290/2796] w-full max-w-[280px] overflow-hidden rounded-[2rem] ring-1 ring-white/10 md:block">
             <Image
