@@ -22,16 +22,21 @@ const TERMS_URL = 'https://admin.san-kea.com/terms'
 const INSTAGRAM_URL = 'https://www.instagram.com/sankea.officiel'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/sankea-officiel-256a6240b'
 const SUPPORT_EMAIL = 'support@san-kea.com'
+const APP_STORE_URL = 'https://apps.apple.com/fr/app/sank%C3%A9a/id6766547853'
 
 function StoreBadge({ store, dark = false }: { store: 'apple' | 'google'; dark?: boolean }) {
   const isApple = store === 'apple'
-  return (
-    <div
-      className={`inline-flex cursor-default items-center gap-3 rounded-xl border px-5 py-2.5 opacity-95 ${
-        dark ? 'border-white/15 bg-ink text-white' : 'border-ink/15 bg-ink text-white'
-      }`}
-      aria-label={isApple ? "Bientôt sur l'App Store" : 'Bientôt sur Google Play'}
-    >
+  // iOS est disponible → badge Apple cliquable vers l'App Store. Android reste « Bientôt ».
+  const available = isApple
+  const label = available
+    ? "Télécharger sur l'App Store"
+    : isApple
+      ? "Bientôt sur l'App Store"
+      : 'Bientôt sur Google Play'
+  const colors = dark ? 'border-white/15 bg-ink text-white' : 'border-ink/15 bg-ink text-white'
+
+  const inner = (
+    <>
       {isApple ? (
         <svg viewBox="0 0 384 512" className="h-7 w-7 fill-white" aria-hidden>
           <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
@@ -43,9 +48,32 @@ function StoreBadge({ store, dark = false }: { store: 'apple' | 'google'; dark?:
         </svg>
       )}
       <span className="text-left leading-tight">
-        <span className="block text-[10px] uppercase tracking-wide text-white/60">Bientôt sur</span>
+        <span className="block text-[10px] uppercase tracking-wide text-white/60">{available ? 'Télécharger sur' : 'Bientôt sur'}</span>
         <span className="block text-base font-semibold">{isApple ? 'App Store' : 'Google Play'}</span>
       </span>
+    </>
+  )
+
+  if (available) {
+    return (
+      <a
+        href={APP_STORE_URL}
+        target="_blank"
+        rel="noreferrer"
+        className={`inline-flex cursor-pointer items-center gap-3 rounded-xl border px-5 py-2.5 transition hover:opacity-90 ${colors}`}
+        aria-label={label}
+      >
+        {inner}
+      </a>
+    )
+  }
+
+  return (
+    <div
+      className={`inline-flex cursor-default items-center gap-3 rounded-xl border px-5 py-2.5 opacity-95 ${colors}`}
+      aria-label={label}
+    >
+      {inner}
     </div>
   )
 }
@@ -131,7 +159,7 @@ const FAQ = [
   { q: 'Combien coûte Sankéa pour les clientes ?', a: 'L’application est gratuite. Tu paies uniquement ta prestation de coiffure, au prix affiché par la coiffeuse.' },
   { q: 'Comment se passe le paiement ?', a: 'Tout se règle en ligne dans l’app, via Stripe (paiement sécurisé). Tu paies un acompte à la réservation pour bloquer ton créneau, puis le solde dans l’app — aucun cash sur place.' },
   { q: 'Puis-je annuler ma réservation ?', a: 'Oui. Le remboursement de l’acompte dépend du délai d’annulation et du statut de ta réservation. Les conditions complètes sont détaillées dans nos conditions d’utilisation.' },
-  { q: 'L’application est-elle déjà disponible ?', a: 'Sankéa arrive très bientôt sur iOS et Android. Suis-nous sur Instagram pour être prévenue dès le lancement.' },
+  { q: 'L’application est-elle déjà disponible ?', a: 'Oui ! Sankéa est disponible dès maintenant sur iOS, à télécharger gratuitement sur l’App Store. La version Android arrive très bientôt — suis-nous sur Instagram pour être prévenue dès sa sortie.' },
   { q: 'Je suis coiffeuse, comment rejoindre Sankéa ?', a: 'Tu pourras créer ton salon, ajouter tes prestations et recevoir des réservations directement depuis l’app dès le lancement. Écris-nous à support@san-kea.com pour être parmi les premières.' },
 ]
 
@@ -182,7 +210,7 @@ export default function Home() {
               <StoreBadge store="apple" />
               <StoreBadge store="google" />
             </div>
-            <p className="mt-3 text-sm text-ink/45">Disponible très bientôt sur iOS et Android.</p>
+            <p className="mt-3 text-sm text-ink/45">Disponible dès maintenant sur iOS — bientôt sur Android.</p>
           </Reveal>
 
           {/* Hero app screenshot */}
@@ -438,13 +466,12 @@ export default function Home() {
       <section className="relative isolate overflow-hidden border-t border-ink/10 bg-ink text-white">
         <div className="mx-auto max-w-3xl px-6 py-28 text-center">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/40">Ne rate pas le lancement</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/40">Disponible dès maintenant</p>
             <h2 className="mt-4 font-display text-4xl font-semibold tracking-tight md:text-6xl">
               Prête à <span className="italic font-light">tester</span> Sankéa ?
             </h2>
             <p className="mx-auto mt-5 max-w-lg text-lg text-white/65">
-              L’application arrive très bientôt sur iOS et Android. Suis-nous sur Instagram pour être prévenue dès
-              le premier jour.
+              Télécharge Sankéa sur iOS et réserve ta coiffure dès aujourd’hui. La version Android arrive très bientôt.
             </p>
             <div className="mt-9 flex flex-col items-center gap-5">
               <InstagramCTA light />
