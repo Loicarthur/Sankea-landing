@@ -160,7 +160,7 @@ const FAQ = [
   { q: 'Comment se passe le paiement ?', a: 'Tout se règle en ligne dans l’app, via Stripe (paiement sécurisé). Tu paies un acompte à la réservation pour bloquer ton créneau, puis le solde dans l’app — aucun cash sur place.' },
   { q: 'Puis-je annuler ma réservation ?', a: 'Oui. Le remboursement de l’acompte dépend du délai d’annulation et du statut de ta réservation. Les conditions complètes sont détaillées dans nos conditions d’utilisation.' },
   { q: 'L’application est-elle déjà disponible ?', a: 'Oui ! Sankéa est disponible dès maintenant sur iOS, à télécharger gratuitement sur l’App Store. La version Android arrive très bientôt — suis-nous sur Instagram pour être prévenue dès sa sortie.' },
-  { q: 'Je suis coiffeuse, comment rejoindre Sankéa ?', a: 'Tu pourras créer ton salon, ajouter tes prestations et recevoir des réservations directement depuis l’app dès le lancement. Écris-nous à support@san-kea.com pour être parmi les premières.' },
+  { q: 'Je suis coiffeuse, comment rejoindre Sankéa ?', a: 'Télécharge l’app sur l’App Store et crée ton salon gratuitement : ajoute tes prestations et tes prix, et reçois tes premières réservations. 0 % de commission le premier mois, sans engagement. Sur Android ? Écris-nous à support@san-kea.com, on te réserve ta place.' },
 ]
 
 export default function Home() {
