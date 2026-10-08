@@ -5,7 +5,8 @@
  * et masque automatiquement les sections qui en dépendent (chiffres, témoignages…).
  */
 
-export const SITE_URL = 'https://san-kea.com'
+/** Domaine canonique : san-kea.com redirige (307) vers www.san-kea.com, donc www fait foi partout. */
+export const SITE_URL = 'https://www.san-kea.com'
 export const SITE_NAME = 'Sankéa'
 
 /** Passe à true quand l'app Android est publiée (et renseigne PLAY_STORE_URL). */

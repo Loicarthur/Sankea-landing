@@ -49,4 +49,4 @@ Définis `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` pour activer Plausible. Événements : `
 ## À faire avant la mise en ligne
 - Remplacer les placeholders `[…]` visibles sur le site.
 - Faire valider les pages légales par un juriste (`/cgu`, `/conditions-salons`, `/confidentialite` renvoient vers les documents hébergés sur `admin.san-kea.com`).
-- Confirmer le domaine (`SITE_URL`, actuellement `https://san-kea.com`).
+- Confirmer le domaine (`SITE_URL`, actuellement `https://www.san-kea.com`, car `san-kea.com` redirige vers `www`).

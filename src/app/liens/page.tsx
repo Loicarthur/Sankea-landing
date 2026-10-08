@@ -5,7 +5,7 @@ import { ORG_ID, buildMetadata, organizationJsonLd, pageJsonLd, websiteJsonLd } 
 import { Instagram, Linkedin, Mail, ArrowUpRight, Sparkles, Scissors } from 'lucide-react'
 
 const APP_STORE_URL = 'https://apps.apple.com/fr/app/sank%C3%A9a/id6766547853'
-const SITE_URL = 'https://san-kea.com'
+const SITE_URL = 'https://www.san-kea.com'
 const INSTAGRAM_URL = 'https://www.instagram.com/sankea.officiel'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/sankea-officiel-256a6240b'
 const SUPPORT_EMAIL = 'support@san-kea.com'
