@@ -147,6 +147,24 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* 5. Coiffures */}
+      <section id="coiffures" className="section-y bg-white">
+        <div className="container-site">
+          <Reveal>
+            <SectionHeader
+              title={<>Toutes les coiffures afro, <em>une seule app</em>.</>}
+              text="Des tresses aux dégradés, en passant par les locks et les coupes enfants, trouve la prestation et le salon qui te correspondent."
+            />
+          </Reveal>
+          <div className="mt-10">
+            <StyleTabs limit={8} />
+          </div>
+          <Link href="/coiffures" className="mt-8 inline-flex items-center gap-2 font-semibold underline underline-offset-4">
+            Voir toutes les coiffures <ArrowRight className="h-4 w-4" aria-hidden />
+          </Link>
+        </div>
+      </section>
+
       {/* 2. Preuves */}
       {stats.length >= 2 ? (
         <section className="border-b border-line bg-paper-soft">
@@ -206,24 +224,6 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* 5. Coiffures */}
-      <section id="coiffures" className="section-y bg-paper-soft">
-        <div className="container-site">
-          <Reveal>
-            <SectionHeader
-              title={<>Toutes les coiffures afro, <em>une seule app</em>.</>}
-              text="Des tresses aux dégradés, en passant par les locks et les coupes enfants, trouve la prestation et le salon qui te correspondent."
-            />
-          </Reveal>
-          <div className="mt-10">
-            <StyleTabs limit={8} />
-          </div>
-          <Link href="/coiffures" className="mt-8 inline-flex items-center gap-2 font-semibold underline underline-offset-4">
-            Voir toutes les coiffures <ArrowRight className="h-4 w-4" aria-hidden />
-          </Link>
         </div>
       </section>
 
