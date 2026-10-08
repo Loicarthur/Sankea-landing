@@ -1,42 +1,17 @@
-'use client'
-
-import { useEffect, useRef, useState } from 'react'
-
 type RevealProps = {
   children: React.ReactNode
   className?: string
   delay?: number
-  /** translate distance/direction at rest */
-  as?: keyof JSX.IntrinsicElements
+  as?: 'div' | 'section' | 'li' | 'p' | 'span'
 }
 
-export function Reveal({ children, className = '', delay = 0, as = 'div' }: RevealProps) {
-  const ref = useRef<HTMLElement | null>(null)
-  const [shown, setShown] = useState(false)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShown(true)
-          io.disconnect()
-        }
-      },
-      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' },
-    )
-    io.observe(el)
-    return () => io.disconnect()
-  }, [])
-
-  const Tag = as as any
+/**
+ * Apparition au scroll. Composant serveur : il ne rend qu'un attribut `data-reveal`,
+ * l'animation est pilotée par un seul observateur (voir RevealController).
+ */
+export function Reveal({ children, className = '', delay = 0, as: Tag = 'div' }: RevealProps) {
   return (
-    <Tag
-      ref={ref as any}
-      style={{ transitionDelay: `${delay}ms` }}
-      className={`reveal ${shown ? 'reveal-in' : ''} ${className}`}
-    >
+    <Tag data-reveal="" style={delay ? { transitionDelay: `${delay}ms` } : undefined} className={`reveal ${className}`}>
       {children}
     </Tag>
   )

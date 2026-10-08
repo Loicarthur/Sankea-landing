@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import { JsonLd } from '@/components/JsonLd'
+import { ORG_ID, buildMetadata, organizationJsonLd, pageJsonLd, websiteJsonLd } from '@/lib/seo'
 import { Instagram, Linkedin, Mail, ArrowUpRight, Sparkles, Scissors } from 'lucide-react'
 
 const APP_STORE_URL = 'https://apps.apple.com/fr/app/sank%C3%A9a/id6766547853'
@@ -8,11 +10,11 @@ const INSTAGRAM_URL = 'https://www.instagram.com/sankea.officiel'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/sankea-officiel-256a6240b'
 const SUPPORT_EMAIL = 'support@san-kea.com'
 
-export const metadata: Metadata = {
-  title: 'Sankéa — Tous nos liens',
+export const metadata: Metadata = buildMetadata({
+  title: 'Sankéa : tous nos liens',
   description: 'Télécharge Sankéa, découvre l’app et rejoins-nous. La coiffure afro, enfin simple à réserver.',
-  alternates: { canonical: '/liens' },
-}
+  path: '/liens',
+})
 
 function AppleIcon() {
   return (
@@ -34,6 +36,20 @@ function AndroidIcon() {
 export default function LiensPage() {
   return (
     <main className="flex min-h-screen flex-col items-center bg-ink px-6 py-16 text-white">
+      <JsonLd
+        data={[
+          organizationJsonLd,
+          websiteJsonLd,
+          pageJsonLd({
+            path: '/liens',
+            name: 'Sankéa : tous nos liens',
+            description: metadata.description as string,
+            type: 'ProfilePage',
+            mainEntity: { '@id': ORG_ID },
+            breadcrumb: false,
+          }),
+        ]}
+      />
       <div className="w-full max-w-md">
         {/* En-tête */}
         <div className="flex flex-col items-center text-center">

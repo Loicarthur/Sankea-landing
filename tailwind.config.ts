@@ -6,6 +6,14 @@ const config: Config = {
     extend: {
       colors: {
         ink: '#191919',
+        'ink-soft': '#202020',
+        'surface-dark': '#262626',
+        'border-dark': '#333333',
+        paper: '#FFFFFF',
+        'paper-soft': '#F9F8F8',
+        line: '#E6E6E6',
+        muted: '#6B6B6B',
+        'muted-dark': '#A3A3A3',
         surface: '#f9f8f8',
       },
       fontFamily: {
@@ -14,6 +22,13 @@ const config: Config = {
       },
       letterSpacing: {
         tightest: '-0.04em',
+        eyebrow: '0.12em',
+      },
+      maxWidth: {
+        site: '1200px',
+      },
+      borderRadius: {
+        card: '16px',
       },
     },
   },

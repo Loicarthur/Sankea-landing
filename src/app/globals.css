@@ -2,14 +2,181 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --ink: #191919;
+  --ink-soft: #202020;
+  --surface-dark: #262626;
+  --border-dark: #333333;
+  --paper: #ffffff;
+  --paper-soft: #f9f8f8;
+  --line: #e6e6e6;
+  --muted: #6b6b6b;
+  --muted-dark: #a3a3a3;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #f9f8f8;
-  color: #191919;
+  background-color: var(--paper);
+  color: var(--ink);
   font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-eyebrow text-muted md:text-xs;
+  }
+  .on-dark .eyebrow {
+    @apply text-muted-dark;
+  }
+  .container-site {
+    @apply mx-auto w-full max-w-site px-4 md:px-8;
+  }
+  .section-y {
+    @apply py-16 md:py-28;
+  }
+  .btn-pill {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20 active:translate-y-0;
+  }
+  .btn-pill-inverse {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-ink shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10 active:translate-y-0;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-line px-6 py-3 text-sm font-semibold text-ink transition hover:bg-paper-soft;
+  }
+  .on-dark .btn-ghost {
+    @apply border-border-dark text-white hover:bg-surface-dark;
+  }
+  .card {
+    @apply rounded-card border border-line bg-white;
+  }
+  .on-dark .card {
+    @apply border-border-dark bg-surface-dark;
+  }
+  .card-hover {
+    @apply transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/10;
+  }
+  .photo-bw {
+    filter: grayscale(1) contrast(1.08);
+  }
+  .prose-sankea p + p {
+    @apply mt-4;
+  }
+}
+
+button,
+[role='button'],
+[role='tab'],
+summary,
+a[href] {
+  cursor: pointer;
+}
+
+/* ---- Entrée du hero (échelonnée) ---- */
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hero-in > * {
+  animation: hero-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes hero-in-soft {
+  from {
+    transform: translateY(14px);
+  }
+  to {
+    transform: none;
+  }
+}
+.hero-in > *:first-child {
+  animation-name: hero-in-soft;
+}
+.hero-in > *:nth-child(2) { animation-delay: 0.08s; }
+.hero-in > *:nth-child(3) { animation-delay: 0.16s; }
+.hero-in > *:nth-child(4) { animation-delay: 0.24s; }
+.hero-in > *:nth-child(5) { animation-delay: 0.32s; }
+
+/* ---- Zoom lent sur les photos de fond ---- */
+@keyframes kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+.kenburns {
+  animation: kenburns 24s ease-in-out infinite alternate;
+}
+
+/* ---- Grain + vignette (profondeur discrète) ---- */
+.backdrop-grain {
+  background-image: url('/noise.png');
+  background-size: 128px 128px;
+  opacity: 0.05;
+}
+.backdrop-vignette {
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+/* ---- Démo d'agenda ---- */
+@keyframes agenda-pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes agenda-ring {
+  from {
+    box-shadow: 0 0 0 0 rgba(25, 25, 25, 0.45);
+    opacity: 1;
+  }
+  to {
+    box-shadow: 0 0 0 12px rgba(25, 25, 25, 0);
+    opacity: 0;
+  }
+}
+@keyframes agenda-toast {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.agenda-pop {
+  animation: agenda-pop 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.agenda-ring {
+  animation: agenda-ring 0.9s ease-out both;
+}
+.agenda-toast {
+  animation: agenda-toast 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* ---- Scroll reveal ---- */
@@ -26,7 +193,7 @@ body {
   transform: none;
 }
 
-/* ---- Marquee (defile horizontal) ---- */
+/* ---- Bande défilante ---- */
 @keyframes marquee {
   from {
     transform: translateX(0);
@@ -35,32 +202,60 @@ body {
     transform: translateX(-50%);
   }
 }
-.animate-marquee {
-  animation: marquee 38s linear infinite;
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  animation: marquee 45s linear infinite;
+}
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
 }
 
-/* ---- Float (photo hero) ---- */
+/* ---- Flottement (carte sur mockup) ---- */
 @keyframes float {
   0%,
   100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-12px);
+    transform: translateY(-10px);
   }
 }
 .animate-float {
   animation: float 7s ease-in-out infinite;
 }
 
+@media (scripting: none) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   .reveal {
     opacity: 1;
     transform: none;
     transition: none;
   }
-  .animate-marquee,
-  .animate-float {
+  .marquee-track,
+  .animate-float,
+  .kenburns,
+  .agenda-pop,
+  .agenda-ring,
+  .agenda-toast,
+  .hero-in > * {
     animation: none;
+  }
+  .btn-pill,
+  .btn-pill-inverse,
+  .card-hover {
+    transition: none;
   }
 }
