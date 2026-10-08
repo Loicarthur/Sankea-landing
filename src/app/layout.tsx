@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: "Sankéa : l'app de réservation de coiffure afro", template: '%s' },
   description: ENTITY_SENTENCE,
+  verification: { google: '63Pju1iqxxdtcJb1uKIaGIISxpV_oc4MdwhULDx6w5o' },
   other: { 'apple-itunes-app': `app-id=${APP_STORE_ID}` },
 }
 
