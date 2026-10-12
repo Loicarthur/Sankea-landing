@@ -12,6 +12,9 @@ export const SITE_NAME = 'Sankéa'
 /** Passe à true quand l'app Android est publiée (et renseigne PLAY_STORE_URL). */
 export const ANDROID_AVAILABLE = false
 
+/** Identifiant de mesure Google Analytics 4. */
+export const GA_ID = 'G-VDN51883P2'
+
 export const APP_STORE_ID = '6766547853'
 export const APP_STORE_URL = 'https://apps.apple.com/fr/app/sank%C3%A9a/id6766547853'
 export const PLAY_STORE_URL: string | null = null

@@ -5,6 +5,7 @@ type Props = Record<string, string | number | boolean>
 declare global {
   interface Window {
     plausible?: (event: string, options?: { props?: Props }) => void
+    gtag?: (command: 'event', name: string, params?: Props) => void
   }
 }
 
@@ -12,6 +13,7 @@ declare global {
 export function track(event: 'clic_store' | 'inscription_android' | 'clic_pro', props?: Props) {
   try {
     window.plausible?.(event, props ? { props } : undefined)
+    window.gtag?.('event', event, props)
   } catch {
     /* analytics indisponible : on ignore */
   }

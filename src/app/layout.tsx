@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import { Fraunces, Inter } from 'next/font/google'
-import { APP_STORE_ID, SITE_URL, ENTITY_SENTENCE } from '@/lib/site-config'
+import { APP_STORE_ID, GA_ID, SITE_URL, ENTITY_SENTENCE } from '@/lib/site-config'
 import { RevealController } from '@/components/RevealController'
 import './globals.css'
 
@@ -37,6 +37,18 @@ const PLAUSIBLE_DOMAIN = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" className={`${display.variable} ${sans.variable}`}>
+      <head>
+        {/* Google tag (gtag.js) */}
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_ID}');`,
+          }}
+        />
+      </head>
       <body className="bg-paper text-ink antialiased">
         {children}
         <RevealController />
