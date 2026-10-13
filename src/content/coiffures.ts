@@ -20,6 +20,8 @@ export type Style = {
   alt: string
   /** Durée de pose affichée sur la carte du catalogue. */
   duration: string
+  /** Point de focus du cadrage (object-position CSS), pour les visages décentrés. */
+  focus?: string
   page?: StylePage
 }
 
@@ -162,17 +164,17 @@ export const STYLES: Style[] = [
   { slug: 'cheveux-naturels', name: 'Cheveux naturels', audience: 'femmes', image: '/styles/naturels.jpg', alt: 'Femme de profil avec des cheveux naturels bouclés', duration: '{{DUREE_CHEVEUX_NATURELS}}' },
   { slug: 'coloration', name: 'Coloration', audience: 'femmes', image: '/styles/coloration.jpg', alt: 'Coloration cuivrée appliquée en salon sur des cheveux afro', duration: '{{DUREE_COLORATION}}' },
   // Hommes
-  { slug: 'degrade-homme-afro', name: 'Dégradé', audience: 'hommes', image: '/photos/pro.jpg', alt: 'Homme avec un dégradé afro et une barbe taillée', duration: '30 à 60 min', page: degrade },
-  { slug: 'coupe-classique-homme', name: 'Coupe classique', audience: 'hommes', image: '/styles/coupe.jpg', alt: 'Coupe afro peignée au peigne afro en salon', duration: '{{DUREE_COUPE_CLASSIQUE_HOMME}}' },
-  { slug: 'barbe', name: 'Barbe', audience: 'hommes', image: '/photos/pro.jpg', alt: 'Homme souriant avec une barbe soignée', duration: '{{DUREE_BARBE}}' },
-  { slug: 'twists-homme', name: 'Twists homme', audience: 'hommes', image: '/styles/twists.jpg', alt: 'Twists longs bouclés', duration: '{{DUREE_TWISTS_HOMME}}' },
-  { slug: 'locks-homme', name: 'Locks homme', audience: 'hommes', image: '/styles/locks.jpg', alt: 'Locks longues vues de dos', duration: '{{DUREE_LOCKS_HOMME}}' },
-  { slug: 'waves', name: 'Waves', audience: 'hommes', image: '/styles/coupe.jpg', alt: 'Coupe afro peignée en salon', duration: '{{DUREE_WAVES}}' },
+  { slug: 'degrade-homme-afro', name: 'Dégradé', audience: 'hommes', image: '/styles/degrade-homme-afro.jpg', alt: 'Homme de profil avec un dégradé afro et une barbe taillée', duration: '30 à 60 min', focus: '80% center', page: degrade },
+  { slug: 'coupe-classique-homme', name: 'Coupe classique', audience: 'hommes', image: '/styles/coupe-classique-homme.jpg', alt: 'Homme avec une coupe courte classique de cheveux crépus et une barbe soignée', focus: '70% center', duration: '{{DUREE_COUPE_CLASSIQUE_HOMME}}' },
+  { slug: 'barbe', name: 'Barbe', audience: 'hommes', image: '/styles/barbe.jpg', alt: 'Gros plan sur une barbe taillée au contour net', focus: '100% 40%', duration: '{{DUREE_BARBE}}' },
+  { slug: 'twists-homme', name: 'Twists homme', audience: 'hommes', image: '/styles/twists-homme.jpg', alt: 'Homme avec des twists courts sur le dessus et un dégradé sur les côtés', focus: '30% center', duration: '{{DUREE_TWISTS_HOMME}}' },
+  { slug: 'locks-homme', name: 'Locks homme', audience: 'hommes', image: '/styles/locks-homme.jpg', alt: 'Homme avec des locks mi-longues et une barbe courte', focus: '65% center', duration: '{{DUREE_LOCKS_HOMME}}' },
+  { slug: 'waves', name: 'Waves', audience: 'hommes', image: '/styles/waves.jpg', alt: 'Homme avec des waves et un motif tracé sur le côté de la tête', focus: '85% center', duration: '{{DUREE_WAVES}}' },
   // Enfants
-  { slug: 'tresses-enfant', name: 'Tresses enfant', audience: 'enfants', image: '/styles/tresses.jpg', alt: 'Tresses longues, base de tresses pour enfant', duration: '1 à 4 h', page: tressesEnfant },
-  { slug: 'nattes-collees', name: 'Nattes collées', audience: 'enfants', image: '/styles/ponytail.jpg', alt: 'Cheveux tirés et attachés en queue-de-cheval lisse', duration: '{{DUREE_NATTES_COLLEES}}' },
-  { slug: 'coupe-enfant', name: 'Coupe enfant', audience: 'enfants', image: '/styles/boucles.jpg', alt: 'Cheveux bouclés longs et blonds', duration: '{{DUREE_COUPE_ENFANT}}' },
-  { slug: 'soins-enfant', name: 'Soins', audience: 'enfants', image: '/styles/soins.jpg', alt: 'Shampoing et soin des cheveux en salon', duration: '{{DUREE_SOINS_ENFANT}}' },
+  { slug: 'tresses-enfant', name: 'Tresses enfant', audience: 'enfants', image: '/styles/tresses-enfant.jpg', alt: 'Petite fille avec des tresses et des perles', focus: '65% center', duration: '1 à 4 h', page: tressesEnfant },
+  { slug: 'nattes-collees', name: 'Nattes collées', audience: 'enfants', image: '/styles/nattes-collees.jpg', alt: 'Petite fille avec des nattes collées et un chignon', focus: '60% center', duration: '{{DUREE_NATTES_COLLEES}}' },
+  { slug: 'coupe-enfant', name: 'Coupe enfant', audience: 'enfants', image: '/styles/coupe-enfant.jpg', alt: 'Petit garçon souriant avec une coupe courte et un dégradé', duration: '{{DUREE_COUPE_ENFANT}}' },
+  { slug: 'soins-enfant', name: 'Soins', audience: 'enfants', image: '/styles/soins-enfant.jpg', alt: 'Enfant au shampoing dans un salon, les mains d’une coiffeuse dans ses cheveux', focus: '60% center', duration: '{{DUREE_SOINS_ENFANT}}' },
 ]
 
 export function getStyle(slug: string): Style | undefined {

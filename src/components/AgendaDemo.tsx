@@ -148,7 +148,7 @@ export function AgendaDemo() {
   useEffect(() => () => timers.current.forEach(clearTimeout), [])
 
   return (
-    <div ref={root} className="relative mx-auto w-full max-w-[44rem]">
+    <div ref={root} className="relative mx-auto mb-20 w-full max-w-[44rem] sm:mb-0">
       <div className="card overflow-hidden shadow-2xl shadow-black/10">
         {/* En-tête */}
         <div className="flex items-start justify-between gap-4 border-b border-line bg-white px-5 py-4">
@@ -226,9 +226,9 @@ export function AgendaDemo() {
       </div>
 
       {/* Notifications de succès */}
-      <div className="pointer-events-none absolute bottom-16 right-0 z-10 flex w-[15rem] max-w-[80%] translate-x-3 flex-col gap-2 sm:top-24 sm:bottom-auto sm:translate-x-[36%]" aria-live="polite">
+      <div className="pointer-events-none absolute left-0 right-0 top-full z-10 mt-3 flex flex-col items-end gap-2 sm:left-auto sm:right-0 sm:top-24 sm:mt-0 sm:w-[15rem] sm:translate-x-[36%] [&>*:not(:last-child)]:hidden sm:[&>*:not(:last-child)]:flex" aria-live="polite">
         {toasts.map((t) => (
-          <div key={t.id} className="agenda-toast flex w-full items-center gap-3 rounded-card border border-line bg-white px-4 py-3 shadow-xl shadow-black/10">
+          <div key={t.id} className="agenda-toast flex w-full max-w-[17rem] items-center sm:max-w-none gap-3 rounded-card border border-line bg-white px-4 py-3 shadow-xl shadow-black/10">
             <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink text-white">
               {t.kind === 'booking' ? <BellRing className="h-4 w-4" aria-hidden /> : <Check className="h-4 w-4" aria-hidden />}
             </span>

@@ -18,7 +18,7 @@ import { JsonLd } from '@/components/JsonLd'
 import { Reveal } from '@/components/Reveal'
 import { SectionHeader } from '@/components/SectionHeader'
 import { DownloadBlock } from '@/components/DownloadBlock'
-import { PhoneMockup } from '@/components/PhoneMockup'
+import { AppShowcase } from '@/components/AppShowcase'
 import { StepCard } from '@/components/StepCard'
 import { StyleTabs } from '@/components/StyleTabs'
 import { FaqAccordion } from '@/components/FaqAccordion'
@@ -81,16 +81,9 @@ const STEPS = [
 
 const TRUST = [
   { icon: ShieldCheck, title: 'Paiement sécurisé', text: 'Stripe traite chaque transaction, et Sankéa ne stocke aucune donnée bancaire.' },
-  { icon: BadgeCheck, title: 'Salons vérifiés', text: 'L’équipe Sankéa contrôle chaque salon avant sa mise en ligne. {{PROCESSUS_VERIFICATION}}' },
+  { icon: BadgeCheck, title: 'Salons vérifiés', text: 'L’équipe Sankéa contrôle chaque salon avant sa mise en ligne.' },
   { icon: MessageSquareQuote, title: 'Avis authentiques', text: 'Seuls les clients qui ont réellement eu leur rendez-vous peuvent laisser un avis.' },
   { icon: CalendarX2, title: 'Annulation claire', text: 'Tu annules gratuitement jusqu’à {{DELAI_ANNULATION}} avant ton rendez-vous.' },
-]
-
-const SCREENS = [
-  { src: '/screens/accueil.png', alt: 'Écran d’accueil de l’app Sankéa avec les coiffures et les salons', caption: 'Pour toute la famille : femmes, hommes et enfants trouvent leur salon.' },
-  { src: '/screens/services.png', alt: 'Écran des prestations d’un salon avec prix et durées', caption: 'Des tarifs clairs : chaque prestation affiche son prix et sa durée.' },
-  { src: '/screens/creneaux.png', alt: 'Écran de choix d’un créneau de réservation', caption: 'Ton créneau, en direct : tu vois les disponibilités réelles du salon.' },
-  { src: '/screens/paiement.png', alt: 'Écran de paiement sécurisé dans l’app Sankéa', caption: 'Un paiement sécurisé : tu règles en quelques secondes avec Stripe.' },
 ]
 
 export default function HomePage() {
@@ -251,7 +244,7 @@ export default function HomePage() {
 
       {/* 7. Confiance */}
       <section className="on-dark section-y relative isolate overflow-hidden bg-ink text-white">
-        <PhotoBackdrop src="/styles/perruques.jpg" alt="Femme avec une coiffure lisse soignée, réalisée par un salon vérifié" position="center 25%" overlay="bg-black/80" />
+        <PhotoBackdrop src="/styles/perruques.jpg" alt="Femme avec une coiffure lisse soignée, réalisée par un salon vérifié" position="center 25%" overlay="bg-black/55" />
         <div className="container-site">
           <Reveal>
             <SectionHeader title={<>Réserve l’esprit <em>tranquille</em>.</>} />
@@ -259,10 +252,10 @@ export default function HomePage() {
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {TRUST.map((t, i) => (
               <Reveal key={t.title} delay={i * 70}>
-                <div className="card card-hover h-full p-6">
+                <div className="h-full rounded-card border border-white/20 bg-gradient-to-br from-white/20 to-white/5 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_12px_32px_rgba(0,0,0,0.25)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:from-white/25">
                   <t.icon className="h-6 w-6" aria-hidden />
                   <h3 className="mt-4 font-display text-lg font-semibold">{t.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-dark">{fill(t.text)}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-white/80">{fill(t.text)}</p>
                 </div>
               </Reveal>
             ))}
@@ -320,7 +313,7 @@ export default function HomePage() {
       ) : null}
 
       {/* 10. Aperçu */}
-      <section id="apercu" className="section-y overflow-hidden">
+      <section id="apercu" className="section-y overflow-hidden bg-[#ECEBEB]">
         <div className="container-site">
           <Reveal>
             <SectionHeader
@@ -329,16 +322,9 @@ export default function HomePage() {
               align="center"
             />
           </Reveal>
-          <div className="mt-12 grid grid-cols-2 gap-x-4 gap-y-10 lg:grid-cols-4 lg:gap-8">
-            {SCREENS.map((s, i) => (
-              <Reveal key={s.src} delay={i * 80} className="lg:[&:nth-child(even)]:mt-14">
-                <figure>
-                  <PhoneMockup src={s.src} alt={s.alt} sizes="(min-width: 1024px) 240px, 45vw" className="max-w-[220px]" />
-                  <figcaption className="mx-auto mt-5 max-w-[16rem] text-center text-sm leading-relaxed text-muted">{s.caption}</figcaption>
-                </figure>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal className="mt-12" delay={100}>
+            <AppShowcase />
+          </Reveal>
         </div>
       </section>
 

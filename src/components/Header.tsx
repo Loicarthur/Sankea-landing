@@ -58,7 +58,7 @@ export function Header({ variant = 'client', links, ctaLabel, ctaHref, logoLabel
   const solid = pro
     ? 'bg-ink/90 text-white backdrop-blur-md'
     : 'bg-white/90 text-ink backdrop-blur-md'
-  const tone = clear ? 'bg-transparent text-white' : solid
+  const tone = open ? (pro ? 'bg-ink text-white' : 'bg-white text-ink') : clear ? 'bg-transparent text-white' : solid
   const position = heroPage ? 'fixed inset-x-0 top-0' : 'sticky top-0'
 
   const whiteMark = pro || clear
@@ -66,6 +66,7 @@ export function Header({ variant = 'client', links, ctaLabel, ctaHref, logoLabel
   const ghost = clear ? 'btn-ghost !border-white/40 !text-white hover:!bg-white/10' : 'btn-ghost'
 
   return (
+    <>
     <header className={`${position} z-50 transition-colors duration-300 ${tone}`}>
       <div className="container-site flex h-16 items-center justify-between gap-6">
         <Link href={pro ? '/pro' : '/'} className="flex items-center gap-2.5 font-display text-2xl font-semibold tracking-tight" aria-label={`${logoLabel}${pro ? ' Pro' : ''} : accueil`}>
@@ -115,36 +116,37 @@ export function Header({ variant = 'client', links, ctaLabel, ctaHref, logoLabel
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
-
-      {open ? (
-        <div id="mobile-menu" className={`fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto lg:hidden ${pro ? 'bg-ink text-white' : 'bg-white text-ink'}`}>
-          <nav aria-label="Menu mobile" className="container-site flex flex-col py-8">
-            {links.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className={`border-b py-5 font-display text-3xl font-semibold ${pro ? 'border-border-dark' : 'border-line'}`}
-              >
-                {l.label}
-              </Link>
-            ))}
-            {sideLink ? (
-              <Link href={sideLink.href} onClick={() => setOpen(false)} className="py-5 text-sm opacity-70">
-                {sideLink.label}
-              </Link>
-            ) : null}
-            {secondaryCta ? (
-              <Link href={secondaryCta.href} onClick={() => setOpen(false)} className="btn-ghost mt-6 py-4 text-base">
-                {secondaryCta.label}
-              </Link>
-            ) : null}
-            <a href={href} onClick={onCta} {...(external ? { target: '_blank', rel: 'noreferrer' } : {})} className={`${pro ? 'btn-pill-inverse' : 'btn-pill'} ${secondaryCta ? 'mt-3' : 'mt-6'} py-4 text-base`}>
-              {ctaLabel}
-            </a>
-          </nav>
-        </div>
-      ) : null}
     </header>
+
+    {open ? (
+      <div id="mobile-menu" className={`fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto lg:hidden ${pro ? 'bg-ink text-white' : 'bg-white text-ink'}`}>
+        <nav aria-label="Menu mobile" className="container-site flex flex-col py-8">
+          {links.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className={`border-b py-5 font-display text-3xl font-semibold ${pro ? 'border-border-dark' : 'border-line'}`}
+            >
+              {l.label}
+            </Link>
+          ))}
+          {sideLink ? (
+            <Link href={sideLink.href} onClick={() => setOpen(false)} className="py-5 text-sm opacity-70">
+              {sideLink.label}
+            </Link>
+          ) : null}
+          {secondaryCta ? (
+            <Link href={secondaryCta.href} onClick={() => setOpen(false)} className="btn-ghost mt-6 py-4 text-base">
+              {secondaryCta.label}
+            </Link>
+          ) : null}
+          <a href={href} onClick={onCta} {...(external ? { target: '_blank', rel: 'noreferrer' } : {})} className={`${pro ? 'btn-pill-inverse' : 'btn-pill'} ${secondaryCta ? 'mt-3' : 'mt-6'} py-4 text-base`}>
+            {ctaLabel}
+          </a>
+        </nav>
+      </div>
+    ) : null}
+    </>
   )
 }

@@ -86,7 +86,7 @@ export default async function StylePageRoute({ params }: { params: Params }) {
               <p data-speakable className="mt-6 max-w-2xl text-lg leading-relaxed">{fill(page.answer)}</p>
             </div>
             <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-card border border-line">
-              <Image src={bwSrc(style.image)} alt={style.alt} fill priority sizes="(min-width: 1024px) 380px, 80vw" className="object-cover" />
+              <Image src={bwSrc(style.image)} alt={style.alt} fill priority sizes="(min-width: 1024px) 380px, 80vw" className="object-cover" style={style.focus ? { objectPosition: style.focus } : undefined} />
             </div>
           </div>
         </header>

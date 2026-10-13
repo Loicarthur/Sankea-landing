@@ -15,6 +15,7 @@ export function StyleCard({ style, priority = false }: { style: Style; priority?
         fill
         sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
         priority={priority}
+        style={style.focus ? { objectPosition: style.focus } : undefined}
         className="object-cover transition duration-700 group-hover:scale-105"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" aria-hidden />
